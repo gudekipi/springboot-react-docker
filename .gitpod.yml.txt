@@ -1,0 +1,25 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Install Dependencies
+    command: |
+      cd backend
+      ./mvnw clean install
+
+  - name: Start Backend Server
+    command: |
+      cd backend
+      java -jar target/backend-0.0.1-SNAPSHOT.jar
+
+  - name: Start Frontend Development Server
+    command: |
+      cd frontend
+      npm install
+      npm start
+    ports:
+      - 3000
+
+ports:
+  - port: 8080
+    onOpen: open-preview
